@@ -30,10 +30,7 @@ private:
     Slider mFeedbackSlider;
     Slider mDepthSlider;
     Slider mRateSlider;
-    Slider mPhaseOffsetSlider;
-    
-    ComboBox mTypeBox;
-    
+
     Delay03AudioProcessor& audioProcessor;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Delay03AudioProcessorEditor)

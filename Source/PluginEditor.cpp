@@ -14,7 +14,7 @@ Delay03AudioProcessorEditor::Delay03AudioProcessorEditor (Delay03AudioProcessor&
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
 
-    setSize (400, 250);
+    setSize (250, 250);
     
     auto& params = processor.getParameters();
     
@@ -63,23 +63,9 @@ Delay03AudioProcessorEditor::Delay03AudioProcessorEditor (Delay03AudioProcessor&
     
     mRateSlider.onDragEnd = [rateParameter] { rateParameter->endChangeGesture(); };
     
-    //phase offset slider
-    AudioParameterFloat* phaseOffsetParameter = (AudioParameterFloat*)params.getUnchecked(3);
-    
-    mPhaseOffsetSlider.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
-    mPhaseOffsetSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 70, 15);
-    mPhaseOffsetSlider.setRange(phaseOffsetParameter->range.start, phaseOffsetParameter->range.end);
-    mPhaseOffsetSlider.setValue(*phaseOffsetParameter);
-    addAndMakeVisible(mPhaseOffsetSlider);
-    
-    mPhaseOffsetSlider.onValueChange = [this, phaseOffsetParameter] { *phaseOffsetParameter = mDryWetSlider.getValue(); };
-    
-    mPhaseOffsetSlider.onDragStart = [phaseOffsetParameter] { phaseOffsetParameter->beginChangeGesture(); };
-    
-    mPhaseOffsetSlider.onDragEnd = [phaseOffsetParameter] { phaseOffsetParameter->endChangeGesture(); };
     
     //feedback slider
-    AudioParameterFloat* feedbackParameter = (AudioParameterFloat*)params.getUnchecked(4);
+    AudioParameterFloat* feedbackParameter = (AudioParameterFloat*)params.getUnchecked(3);
     
     mFeedbackSlider.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
     mFeedbackSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 70, 15);
@@ -93,21 +79,6 @@ Delay03AudioProcessorEditor::Delay03AudioProcessorEditor (Delay03AudioProcessor&
     
     mFeedbackSlider.onDragEnd = [feedbackParameter] { feedbackParameter->endChangeGesture(); };
     
-    //type box
-    AudioParameterInt* typeParameter = (AudioParameterInt*)params.getUnchecked(5);
-    
-    mTypeBox.addItem("Chorus", 1);
-    mTypeBox.addItem("Flanger", 2);
-    addAndMakeVisible(mTypeBox);
-    
-    mTypeBox.onChange = [this, typeParameter]
-    {
-        typeParameter->beginChangeGesture();
-        *typeParameter = mTypeBox.getSelectedItemIndex();
-        typeParameter->endChangeGesture();
-    };
-    
-    mTypeBox.setSelectedItemIndex(*typeParameter);
 }
 
 Delay03AudioProcessorEditor::~Delay03AudioProcessorEditor()
@@ -131,13 +102,9 @@ void Delay03AudioProcessorEditor::paint (juce::Graphics& g)
 
 void Delay03AudioProcessorEditor::resized()
 {
-    mDryWetSlider.setBounds(0, 0, 100, 100);
-    mFeedbackSlider.setBounds(100, 0, 100, 100);
-    mDepthSlider.setBounds(200, 0, 100, 100);
-    mRateSlider.setBounds(0, 100, 100, 100);
-    mPhaseOffsetSlider.setBounds(100, 100, 100, 100);
-    mTypeBox.setBounds(200, 100, 100, 30);
-
-
+    mDryWetSlider.setBounds(0, 25, 100, 100);
+    mFeedbackSlider.setBounds(100, 25, 100, 100);
+    mDepthSlider.setBounds(0, 150, 100, 100);
+    mRateSlider.setBounds(100, 150, 100, 100);
 }
 

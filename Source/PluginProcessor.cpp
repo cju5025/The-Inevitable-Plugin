@@ -27,13 +27,8 @@ Delay03AudioProcessor::Delay03AudioProcessor()
     addParameter(mDepthParameter = new AudioParameterFloat("depth", "Depth", 0.f, 1.f, 0.5f));
     
     addParameter(mRateParameter = new AudioParameterFloat("rate", "Rate", 0.1f, 20.f, 10.f));
-    
-    addParameter(mPhaseOffsetParameter = new AudioParameterFloat("phaseoffset", "Phase Offset", 0.f, 1.f, 0.f));
-    
+
     addParameter(mFeedbackParameter = new AudioParameterFloat("feedback", "Feedback", 0.f, 1.f, 0.5f));
-    
-    addParameter(mTypeParameter = new AudioParameterInt("type", "Type", 0, 1, 0));
-    
 
     
     mCircularBufferLeft = nullptr;
