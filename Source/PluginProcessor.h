@@ -1,20 +1,9 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include <JuceHeader.h>
 
 #define MAX_DELAY_TIME 2
 
-//==============================================================================
-/**
-*/
 class Delay03AudioProcessor  : public juce::AudioProcessor
 {
 public:
